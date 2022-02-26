@@ -205,4 +205,12 @@ amplify plugin remove
 ```
 
 ## About this project 💡
-This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you. 
+This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you.
+
+## Security
+
+See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
+
+## License
+
+This project is licensed under the Apache-2.0 License.
