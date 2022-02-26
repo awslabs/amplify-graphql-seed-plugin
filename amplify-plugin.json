@@ -1,0 +1,13 @@
+{
+  "name": "graphql-seed",
+  "type": "util",
+  "commands": [
+    "version",
+    "help",
+    "run",
+    "init",
+    "delete-mock",
+    "remove"
+  ],
+  "eventHandlers": []
+}
