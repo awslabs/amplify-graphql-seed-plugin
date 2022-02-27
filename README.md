@@ -5,6 +5,8 @@ With this plugin, you can improve testing of your code 💯, reduce time by crea
 
 **Disclaimer**: this is a beta-release of the Amplify GraphQL Seed Plugin and may contain unforeseen bugs. This is a 3rd-party plugin and is not associated with the official Amplify project. Use this plugin at your own discretion. Please let us know if you encounter any bugs, or have feedback / suggestions. 
 
+![Demo-gif](./demo.gif)
+
 **Contents:**
   - [Installation 🛠️](#installation)
     - [Prerequisites](#prerequisites)
@@ -205,7 +207,7 @@ amplify plugin remove
 ```
 
 ## About this project 💡
-This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you.
+This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you. 
 
 ## Security
 
