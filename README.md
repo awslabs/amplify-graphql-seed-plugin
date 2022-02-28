@@ -50,7 +50,7 @@ We assume that by this stage you already have a GraphQL API configured in your p
 amplify graphql-seed init
 ```
 ### Step 2. Adjust the generated `seed-data.js` file to your needs
-The init file has created the `amplify/backend/seeding/seed-data.js` file. Adjust mutations and data to run your custom seeding. See [this section](#customizing-your-seed-file) of the readme for more details. 
+The init file has created the `amplify/backend/seeding/seed-data.js` file. Adjust mutations and data to run your custom seeding. See [this section](#customizing-your-seed-file) of the readme for more details.
 
 ### Step 3. Run the plugin to seed your database
 **Option 1:** Start your mock database, and seed it:
@@ -177,6 +177,7 @@ Our Amplify GraphQL seeding plugin supports 3 different authentication modes. Ea
 
 ## Common errors ⛔
 * If you see the "GraphQL error: The conditional request failed" error, it is likely that you're trying to create an item with an existing index to your local or remote database. The plugin will skip these elements automatically. 
+* If you see an error like "fsPromises.rm is not a function", make sure that your npm version >= 14.14.0
 ## How to use this plugin in CI/CD pipelines 🏗️
 You can also use this plugin to seed your remote databases as part of your deployment pipelines. For example, if you're using the Amplify pipelines, you can adjust your `amplify.yml` file (in build settings), to include the following:
 ```yaml
@@ -207,7 +208,7 @@ amplify plugin remove
 ```
 
 ## About this project 💡
-This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you. 
+This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you.
 
 ## Security
 

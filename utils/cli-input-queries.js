@@ -1,17 +1,5 @@
 const inquirer = require('inquirer')
 
-export async function askCLIOpenQuestion (message, defaultValue = ['yes']) {
-  const answers = await inquirer.prompt([
-    {
-      name: 'providedAnswer',
-      type: 'input',
-      message: 'Do you want to add amplify hooks? (yes/no)',
-      default: defaultValue.join(',')
-    }
-  ])
-  return answers.providedAnswer.split(',').map(pattern => pattern.trim())
-}
-
 export async function askCLIConfirmation (message) {
   const answer = await inquirer.prompt([
     {
