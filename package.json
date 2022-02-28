@@ -1,7 +1,7 @@
 {
   "name": "graphql-seed",
   "version": "0.1.0",
-  "description": "Package for local and remote seeding of GraphQL APIs.",
+  "description": "AWS Amplify plugin for local and remote seeding of GraphQL API.",
   "author": "Michal Juras and Laurens Brinker, Amazon Web Services",
   "engines": {
     "node" : ">=14.0.0" 
