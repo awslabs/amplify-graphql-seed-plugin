@@ -187,7 +187,7 @@ backend:
     preBuild:
       commands:
         - npm install -g amplify-graphql-seed-plugin
-        - printf 'Y' | amplify plugin add graphql-seed
+        - printf 'Y' | amplify plugin add amplify-graphql-seed-plugin
         - yum -y install jq
     build:
       commands:
