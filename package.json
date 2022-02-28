@@ -4,7 +4,7 @@
   "description": "AWS Amplify plugin for local and remote seeding of GraphQL API.",
   "author": "Michal Juras and Laurens Brinker, Amazon Web Services",
   "engines": {
-    "node" : ">=14.0.0" 
+    "node": ">=14.0.0"
   },
   "main": "index.js",
   "license": "Apache-2.0",
