@@ -178,6 +178,7 @@ Our Amplify GraphQL seeding plugin supports 3 different authentication modes. Ea
 ## Common errors ⛔
 * If you see the "GraphQL error: The conditional request failed" error, it is likely that you're trying to create an item with an existing index to your local or remote database. The plugin will skip these elements automatically. 
 * If you see an error like "fsPromises.rm is not a function", make sure that your npm version >= 14.14.0
+* As of late February 2022, the plugin might be flagged up with 11 medium-level vulnerabilities. They're coming from the aws-amplify library directly and we are unable to fix them as of now. Take a look at this [issue](https://github.com/aws-amplify/amplify-js/issues/7583) for updates 
 ## How to use this plugin in CI/CD pipelines 🏗️
 You can also use this plugin to seed your remote databases as part of your deployment pipelines. For example, if you're using the Amplify pipelines, you can adjust your `amplify.yml` file (in build settings), to include the following:
 ```yaml
