@@ -36,7 +36,7 @@ To use this plugin with your Amplify CLI, you must have the following prerequisi
 Once you have installed the above packages, you can install the GraphQL Seed plugin using the following commands: 
 ```bash
 npm install -g amplify-graphql-seed-plugin
-amplify plugin add graphql-seed
+amplify plugin add amplify-graphql-seed-plugin
 ```
 
 You can validate the installation by running: 
@@ -163,6 +163,10 @@ By default, the query will use your default authentication method specified in `
 Our Amplify GraphQL seeding plugin supports 3 different authentication modes. Each of them requires changes to be performed via amplify cli command if not setup already. 
 
 1. Cognito User Pools 
+  - To use this AuthN method, you need to create a test user in Cognito User Pools first. You can then use the following command to confirm the users credentials to be used later on. Note: you must run the command with the appropriate permissions in place. 
+```shell
+aws cognito-idp admin-set-user-password --user-pool-id <your_user_pool_id> --username <your_user_id> --password <your_password> --permanent
+``` 
    - Make sure that Cognito User Pools is enabled as Authorization (AuthZ) option for your GraphQL API. You can do that by running `amplify api update`. Remember to deploy your changes to the amplify by running `amplify push`
    - To be able to write/read to a table, you must enable that authorization option for your schema. Take a look at the documentation to configure the appropriate authorization modes [here](https://docs.amplify.aws/cli/graphql/authorization-rules/). For instance, your schema could have a line like this `type Todo @model @auth(rules: [{allow: owner, identityClaim: "email"}, {allow: private, provider: userPools, operations: [read]}])`
 
@@ -178,6 +182,7 @@ Our Amplify GraphQL seeding plugin supports 3 different authentication modes. Ea
 ## Common errors ⛔
 * If you see the "GraphQL error: The conditional request failed" error, it is likely that you're trying to create an item with an existing index to your local or remote database. The plugin will skip these elements automatically. 
 * If you see an error like "fsPromises.rm is not a function", make sure that your npm version >= 14.14.0
+* As of late February 2022, the plugin might be flagged up with 11 medium-level vulnerabilities. They're coming from the aws-amplify library directly and we are unable to fix them as of now. Take a look at this [issue](https://github.com/aws-amplify/amplify-js/issues/7583) for updates 
 ## How to use this plugin in CI/CD pipelines 🏗️
 You can also use this plugin to seed your remote databases as part of your deployment pipelines. For example, if you're using the Amplify pipelines, you can adjust your `amplify.yml` file (in build settings), to include the following:
 ```yaml
@@ -186,7 +191,7 @@ backend:
     preBuild:
       commands:
         - npm install -g amplify-graphql-seed-plugin
-        - printf 'Y' | amplify plugin add graphql-seed
+        - printf 'Y' | amplify plugin add amplify-graphql-seed-plugin
         - yum -y install jq
     build:
       commands:
