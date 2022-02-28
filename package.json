@@ -26,8 +26,7 @@
     "cli-table": "^0.3.11",
     "fast-glob": "^3.2.11",
     "graphql-tag": "^2.12.6",
-    "inquirer": "^7.3.3",
-    "strip-ansi": "^7.0.1"
+    "inquirer": "^7.3.3"
   },
   "devDependencies": {
     "eslint": "^8.9.0"

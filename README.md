@@ -36,7 +36,7 @@ To use this plugin with your Amplify CLI, you must have the following prerequisi
 Once you have installed the above packages, you can install the GraphQL Seed plugin using the following commands: 
 ```bash
 npm install -g amplify-graphql-seed-plugin
-amplify plugin add graphql-seed
+amplify plugin add amplify-graphql-seed-plugin
 ```
 
 You can validate the installation by running: 
