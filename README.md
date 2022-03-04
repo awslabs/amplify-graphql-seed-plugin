@@ -135,7 +135,7 @@ Let's assume the following scenario, you have the following schema.graphql in yo
 ```graphql
 type Todo @model @auth(rules: [
     {allow: owner, identityClaim: "email"}, 
-    {allow: private, provider: userPools, operations: [read]},
+    {allow: private, provider: userPools, operations: [read, create]},
     {allow: public, provider: apiKey, operations: [read, create]},
     {allow: private, provider: iam}
   ]) {
