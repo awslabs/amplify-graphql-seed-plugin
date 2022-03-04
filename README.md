@@ -1,4 +1,8 @@
 # Amplify GraphQL Seed plugin - BETA RELEASE
+
+[![npm version](https://badge.fury.io/js/amplify-graphql-seed-plugin.svg)](https://badge.fury.io/js/amplify-graphql-seed-plugin)
+
+
 This is an [Amplify Plugin](https://docs.amplify.aws/cli/plugins/plugins/) which helps your to seed the databases of your Amplify projects with data using an AppSync GraphQL API. It can be used to seed local mock databases, as well as remote databases, e.g. for testing purposes. This plugin allows you to customize and auto-generate mock data, including data with relationships between models, beyond the capabilities of the 'Auto-generate data' functionality in Amplify Studio.
 
 With this plugin, you can improve testing of your code 💯, reduce time by creating test data through automation ⏱️, and unify mock-data across your project by codifying it in your Version Control System 🚀. 
@@ -131,7 +135,7 @@ Let's assume the following scenario, you have the following schema.graphql in yo
 ```graphql
 type Todo @model @auth(rules: [
     {allow: owner, identityClaim: "email"}, 
-    {allow: private, provider: userPools, operations: [read]},
+    {allow: private, provider: userPools, operations: [read, create]},
     {allow: public, provider: apiKey, operations: [read, create]},
     {allow: private, provider: iam}
   ]) {
