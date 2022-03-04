@@ -3,7 +3,8 @@
 // In that case, this file can be used to add additional custom mutations to complement the mutations from codegen.
 // Typically they would reside in your "src/graphql" folder
 
-export const createTodo = /* GraphQL */ `
+/* EXAMPLE CUSTOM MUTATION
+ export const createTodo = `
     mutation createTodo(
         $input: CreateTodoInput!
         $condition: ModelTodoConditionInput
@@ -15,3 +16,4 @@ export const createTodo = /* GraphQL */ `
         }
     }
 `
+*/
