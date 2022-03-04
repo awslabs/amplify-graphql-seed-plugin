@@ -10,7 +10,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - added a badge to README linking to the NPM repo
-- fix Changelog link to version on npm
 
 ### Changed
 - comment out the example in seed-data.js file
