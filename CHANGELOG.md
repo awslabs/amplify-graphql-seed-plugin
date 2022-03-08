@@ -5,6 +5,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Unreleased
+- Command to create a test-user in Cognito through the Plugin
+- Integration with Secrets Manager to securely store the test-user's credentials, and use Secrets Manager when running the seeding script to fetch the credentials
+- Mechanism to automatically infer the mutations and data structure from the GraphQL API, to dynamically create some sample mutations based on a user's schema
+- Configuration option to link remote seeding to a specific Amplify environment
+
+## [0.1.6] - 2022-03-08
+### Changed
+- Added a command to README to include command to create a new test user through the AWS CLI
+- Added a section to README to indicate plans for future work
+- Added Unreleased section to the CHANGELOG
 
 ## [0.1.5] - 2022-03-04 
 
@@ -23,6 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - local and remote seeding for the following Authentication types: AWS_IAM, API_KEY and Cognito User pools
   - ability to link into amplify hooks to enable commands like `amplify mock --seed`
 
-[0.1.5]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.4
+[0.1.6]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.6
+[0.1.5]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.5
 [0.1.4]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.4
 [0.1.3]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.3

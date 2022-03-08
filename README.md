@@ -167,7 +167,10 @@ By default, the query will use your default authentication method specified in `
 Our Amplify GraphQL seeding plugin supports 3 different authentication modes. Each of them requires changes to be performed via amplify cli command if not setup already. 
 
 1. Cognito User Pools 
-  - To use this AuthN method, you need to create a test user in Cognito User Pools first. You can then use the following command to confirm the users credentials to be used later on. Note: you must run the command with the appropriate permissions in place. 
+  - To use this AuthN method, you need to create a test user in Cognito User Pools first. You can then use the following command to confirm the users credentials to be used later on. Note: you can run the following CLI commands with the appropriate permissions in place to create a user and set a password:
+```shell
+aws cognito-idp admin-create-user --user-pool-id <your_user_pool_id> --username <your_user_id>
+```
 ```shell
 aws cognito-idp admin-set-user-password --user-pool-id <your_user_pool_id> --username <your_user_id> --password <your_password> --permanent
 ``` 
@@ -218,6 +221,13 @@ amplify plugin remove
 
 ## About this project 💡
 This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you.
+
+## Future work 🌲
+This is a beta version of the plugin, we've got some plans in mind to improve the plugin in the future:
+* Create a command to create a test-user in Cognito through the Plugin
+* As part of the command above, integrate with Secrets Manager to securely store the test-user's credentials, and use Secrets Manager when running the seeding script to fetch the credentials
+* Automatically infer the mutations and data structure from the GraphQL API, to dynamically create some sample mutations based on your schema
+* Create a configuration option to link remote seeding to a specific Amplify environment. For instance, specify that the plugin should only run in 'dev' and not in 'prod'
 
 ## Security
 
