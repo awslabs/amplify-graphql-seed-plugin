@@ -20,58 +20,58 @@ const getFileHash = async (path) => {
   })
 }
 
-export const checkFilesAreTheSame = async (file1, file2) => {
+module.exports.checkFilesAreTheSame = async (file1, file2) => {
   return await getFileHash(file1) === await getFileHash(file2)
 }
 
-export const getProjectRoot = (context) => {
+module.exports.getProjectRoot = (context) => {
   return path.normalize(path.join(context.amplify.pathManager.searchProjectRootPath()))
 }
 
-export const getMockDirectory = (context) => {
+module.exports.getMockDirectory = (context) => {
   const backendDir = getBackendDirectory(context)
   return path.normalize(path.join(backendDir, '../mock-data/dynamodb'))
 }
 
-export const getHooksDirectory = (context) => {
+module.exports.getHooksDirectory = (context) => {
   const backendDir = getBackendDirectory(context)
   return path.normalize(path.join(backendDir, '../hooks'))
 }
 
-export const getHooksFileLocation = (context, fileName) => {
+module.exports.getHooksFileLocation = (context, fileName) => {
   const getHooksFileLocation = getHooksDirectory(context)
   return path.normalize(path.join(getHooksFileLocation, fileName))
 }
 
-export const getBackendDirectory = (context) => {
+module.exports.getBackendDirectory = (context) => {
   return context.amplify.pathManager.getBackendDirPath()
 }
 
-export const getSeedingDirectory = (context) => {
+module.exports.getSeedingDirectory = (context) => {
   const backendDir = getBackendDirectory(context)
   return path.normalize(path.join(backendDir, SEED_BACKEND_FOLDER))
 }
 
-export const getSampleDirectory = () => {
+module.exports.getSampleDirectory = () => {
   return path.normalize(path.join(__dirname, SAMPLE_DIRECTORY))
 }
 
-export const getSampleFileLocation = (context, fileName) => {
+module.exports.getSampleFileLocation = (context, fileName) => {
   const sampleDir = getSampleDirectory(context)
   return path.normalize(path.join(sampleDir, fileName))
 }
 
-export const getSeedingFileLocation = (context, fileName) => {
+module.exports.getSeedingFileLocation = (context, fileName) => {
   const seedDir = getSeedingDirectory(context)
   return path.normalize(path.join(seedDir, fileName))
 }
 
-export const getSrcFolder = (context) => {
+module.exports.getSrcFolder = (context) => {
   const projectRoot = getProjectRoot(context)
   return path.normalize(path.join(projectRoot, 'src'))
 }
 
-export const getAwsExportsFile = async (context) => {
+module.exports.getAwsExportsFile = async (context) => {
   const srcFolder = path.normalize(path.join(context.amplify.pathManager.searchProjectRootPath(), 'src/'))
   const awsExportsFiles = await fg([`${srcFolder}/**/aws-exports.*`])
   if (awsExportsFiles.length === 0) {
@@ -82,7 +82,7 @@ export const getAwsExportsFile = async (context) => {
   return await import(awsExportsFile)
 }
 
-export const getCredentialsFileData = async (context) => {
+module.exports.getCredentialsFileData = async (context) => {
   const seedDir = await getSeedingDirectory(context)
   try {
     const data = await fsPromises.readFile(`${seedDir}/${constants.CREDENTIALS_FILENAME}`)
@@ -98,7 +98,7 @@ export const getCredentialsFileData = async (context) => {
   }
 }
 
-export const getConfigurationData = async (context) => {
+module.exports.getConfigurationData = async (context) => {
   const seedDir = await getSeedingDirectory(context)
   try {
     const data = await fsPromises.readFile(`${seedDir}/${constants.CONFIGURATIONS_FILENAME}`)

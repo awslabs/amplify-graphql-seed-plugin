@@ -96,7 +96,7 @@ const RUNARGUMENTSCHEMA = {
   additionalProperties: false
 }
 
-export {
+module.exports = {
   SEED_FILE_NAME,
   SEED_BACKEND_FOLDER,
   SAMPLE_SEED_FILE_NAME,

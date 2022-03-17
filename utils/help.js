@@ -1,7 +1,7 @@
 
 const Table = require('cli-table')
 
-export function showHelp (input, context) {
+module.exports.showHelp = (input, context) => {
   // Take help context in the format:
 
   const table = new Table({
