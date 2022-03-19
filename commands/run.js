@@ -1,4 +1,5 @@
-import Amplify, { API, Auth, graphqlOperation } from 'aws-amplify'
+const Amplify = require('aws-amplify').default
+const { API, Auth, graphqlOperation } = Amplify
 
 const path = require('path')
 
