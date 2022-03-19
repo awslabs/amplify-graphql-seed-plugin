@@ -1,15 +1,20 @@
 /* eslint-disable no-undef */
-const runModule = require('../commands/run')
+// const { Jest } = require('@jest/environment')
 
-jest.mock('inquirer')
-// inquirer.prompt = jest.fn().mockResolvedValue({ email: 'some@example.com' });
+const { expect } = require('@jest/globals')
+
+const runModule = require('../commands/run')
+const inquirer = require('inquirer')
+
+// inquirer.prompt = jest.mock('inquirer')
+// inquirer.prompt = Jest.fn().mockResolvedValue({ email: 'some@example.com' });
 
 test('adds 1 + 2 to equal 3', () => {
   expect(3).toBe(3)
 })
 
-test('Check if MutationRunner calls CLI if no data passed', () => {
-    const input = {
+test('Check if fails if missing aws-exports file', async () => {
+    const context = {
       input: {
         argv: [
           'graphql-seed',
@@ -19,48 +24,46 @@ test('Check if MutationRunner calls CLI if no data passed', () => {
         command: 'run'
       },
       amplify: {
-        _amplifyHelpersDirPath: '/Users/jurasmj/.nvm/versions/node/v12.19.1/lib/node_modules/@aws-amplify/cli/lib/extensions/amplify-helpers',
-        addCleanUpTask: [],
-        runCleanUpTasks: [],
-        _cleanUpTasks: [],
-        _getEnvInfo: "",
-        _getProjectMeta: "",
-        _getProjectConfig: ""
+        pathManager: {
+          searchProjectRootPath: jest.fn(() => {
+            return 'mockProjectRootDirPath';
+          }),
+        },
+        // _amplifyHelpersDirPath: '/Users/jurasmj/.nvm/versions/node/v12.19.1/lib/node_modules/@aws-amplify/cli/lib/extensions/amplify-helpers',
+        // addCleanUpTask: [],
+        // runCleanUpTasks: [],
+        // _cleanUpTasks: [],
+        // _getEnvInfo: "",
+        // _getProjectMeta: "",
+        // _getProjectConfig: ""
       },
       filesystem: {
-        remove: "",
-        read: "",
-        write: "",
-        exists: "",
-        isFile: "",
-        path: ""
+        // remove: "",
+        // read: "",
+        // write: "",
+        // exists: "",
+        // isFile: "",
+        // path: ""
       },
       print: {
-        info: "",
-        fancy: "",
-        warning: "",
-        error: "",
-        success: "",
-        table: "",
-        debug: "",
-        green: "",
-        yellow: "",
-        red: "",
-        blue: ""
+        info: jest.fn(),
+        warning: jest.fn(),
+        error: jest.fn(),
+        success: jest.fn(),
       },
       parameters: {
-        argv: [
-          '/Users/jurasmj/.nvm/versions/node/v12.19.1/bin/node',
-          '/Users/jurasmj/.nvm/versions/node/v12.19.1/bin/amplify',
-          'graphql-seed',
-          'run'
-        ],
+        argv: [],
         plugin: 'graphql-seed',
         command: 'run',
         options: {},
       },
     }
 
-    runModule(input)
-  // expect(inqui.amplify.invokePluginMethod).toBeCalledTimes(1);
+  try {
+    await runModule.run(context);
+  } catch (e) {
+    expect(e).toBe("aws-exports.js file does not exist!")
+  }
+  expect(context.print.error).toBeCalledTimes(1);
+
 })

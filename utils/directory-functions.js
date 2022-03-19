@@ -76,7 +76,7 @@ module.exports.getAwsExportsFile = async (context) => {
   const awsExportsFiles = await fg([`${srcFolder}/**/aws-exports.*`])
   if (awsExportsFiles.length === 0) {
     context.print.error('No aws-exports file found.')
-    process.exit()
+    throw 'aws-exports.js file does not exist!'
   }
   const awsExportsFile = awsExportsFiles[0]
   return await import(awsExportsFile)
