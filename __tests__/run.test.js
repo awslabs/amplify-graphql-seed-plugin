@@ -13,7 +13,7 @@ test('adds 1 + 2 to equal 3', () => {
   expect(3).toBe(3)
 })
 
-test('Check if fails if missing aws-exports file', async () => {
+test('Run fails if missing aws-exports file', async () => {
     const context = {
       input: {
         argv: [
@@ -26,7 +26,7 @@ test('Check if fails if missing aws-exports file', async () => {
       amplify: {
         pathManager: {
           searchProjectRootPath: jest.fn(() => {
-            return 'mockProjectRootDirPath';
+            return './sample-test-dir/';
           }),
         },
         // _amplifyHelpersDirPath: '/Users/jurasmj/.nvm/versions/node/v12.19.1/lib/node_modules/@aws-amplify/cli/lib/extensions/amplify-helpers',
@@ -65,5 +65,4 @@ test('Check if fails if missing aws-exports file', async () => {
     expect(e).toBe("aws-exports.js file does not exist!")
   }
   expect(context.print.error).toBeCalledTimes(1);
-
 })
