@@ -1,4 +1,4 @@
-import Amplify, { API, Auth, graphqlOperation } from 'aws-amplify'
+import { Amplify, API, Auth, graphqlOperation } from 'aws-amplify'
 
 const path = require('path')
 
@@ -50,12 +50,17 @@ async function run (context) {
   const defaultAuthenticationType = configurationData.defaultAuthenticationType
   const region = configurationData.region || awsExports.default.aws_project_region
 
+  const remote = context.parameters.options.remote !== undefined
+
+  // If this is a remote seeding operation, make sure that we run this in the right environment
+  checkRemoteRequirements(context, remote, configurationData)
+
   const mutationProps = {
     defaultAuthenticationType,
     endpoint: graphqlEndpoint,
     apiKey: awsExports.default.aws_appsync_apiKey || null,
     region,
-    remote: context.parameters.options.remote !== undefined
+    remote: remote
   }
 
   // Step 4: Add items to the database
@@ -96,6 +101,24 @@ const addItems = async (seedData, context, mutationProps) => {
 
     await executeMutationsFromOperation(executionProps)
     context.print.info('\n')
+  }
+}
+
+const checkRemoteRequirements = (context, remote, configurationData) => {
+  if (remote === true) {
+    const remoteSeedingEnvs = configurationData.remoteSeedingEnvs
+    const remoteSeedEnvironmentVariable = configurationData.remoteSeedingEnvironmentVariable
+    const environmentVariableValue = process.env[remoteSeedEnvironmentVariable]
+    if (environmentVariableValue === undefined) {
+      context.print.error(`Remote seeding, but $${remoteSeedEnvironmentVariable} variable not found. Make sure to run the init command, and e.g. run "export USER_BRANCH=dev" if you're running this command locally`)
+      throw "Error"
+    } else if (!Array.isArray(remoteSeedingEnvs) || remoteSeedingEnvs.length === 0) {
+      context.print.error("Could not find remote seeding environments in the configuration file")
+      throw "Error"
+    } else if (!remoteSeedingEnvs.includes(environmentVariableValue)) {
+      context.print.error(`Current environment "${environmentVariableValue}" not in remoteSeedingEnvs - edit the configuration.json file`)
+      throw "Error"
+    }
   }
 }
 

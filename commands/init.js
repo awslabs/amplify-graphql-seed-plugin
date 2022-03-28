@@ -120,7 +120,8 @@ async function createConfigurationFile (context) {
   const jsonObject = {
     mutationsFile: constants.DEFAULT_MUTATION_FILENAME,
     seedDataFile: constants.SEED_FILE_NAME,
-    // TODO remoteSeedingEnvs: ["dev", "athena", "prod"],
+    remoteSeedingEnvs: ["dev"],
+    remoteSeedingEnvironmentVariable: "USER_BRANCH",
     defaultAuthenticationType: awsExports.default.aws_appsync_authenticationType || '',
     region: awsExports.default.aws_project_region || ''
   }

@@ -24,8 +24,10 @@ With this plugin, you can improve testing of your code 💯, reduce time by crea
     - [Authentication options](#authentication-options)
   - [Common errors ⛔](#common-errors-)
   - [How to use this plugin in CI/CD pipelines 🏗️](#how-to-use-this-plugin-in-cicd-pipelines)
+    - [Specify remote environments for seeding](#specify-remote-environments-for-seeding)
   - [Uninstall the plugin 🗑️](#uninstall-the-plugin-️)
   - [About this project 💡](#about-this-project-)
+  - [Future work 🌲](#future-work-)
 
 ## Installation 🛠️
 
@@ -210,6 +212,29 @@ This will install the plugin using npm, add the plugin to the Amplify environmen
 
 During the build, the environment will be pushed, and the seeding script will be run based on the code checked in under `amplify/backend/seeding` in the underlying Version Control System.
 
+### Specify remote environments for seeding
+When using this plugin to seed remote environments, either through CI/CD pipelines or by using the `amplify graphql-seed run --remote` command, you can specify which environments should be used for seeding. By doing so, you can prevent accidentally seeding the wrong environment.
+
+For example, if you have your CI/CD pipelines in Amplify, you have access to the `$USER_BRANCH` environment variable which defines what environment the CI/CD pipeline is run for. Suppose you want to allow the pipeline to seed the `dev` and `staging` environments, but not the `prod` environment. You can achieve this by adjusting the `amplify/backend/seeding/configuration.json` file to this:
+```json
+{
+	"mutationsFile": "customMutations.js",
+	"seedDataFile": "seed-data.js",
+	"remoteSeedingEnvs": [
+      "dev",
+      "staging",
+	],
+	"remoteSeedingEnvironmentVariable": "USER_BRANCH",
+	"defaultAuthenticationType": "AMAZON_COGNITO_USER_POOLS",
+	"region": "eu-west-2"
+}
+```
+If you've setup your build specification similar to the section above, when the `amplify graphql-seed run` command is executed, the Plugin will verify that the environment for the pipeline is included in `remoteSeedingEnvs`.
+
+If you're using a CI/CD pipeline outside Amplify, you can adjust the `remoteSeedingEnvironmentVariable` setting to point to a different environment variable, e.g. "ENV", which can be used to distinguish between different environments in your own pipelines.
+
+If you would like to run a remote seeding event from your local machine, e.g. by running `amplify graphql-seed run --remote` in your terminal, you will have to create a local environment variable. For instance, Mac users can run the `export USER_BANCH=dev` in a terminal to set this up locally.
+
 ## Uninstall the plugin 🗑️
 ```sh
 npm uninstall -g amplify-graphql-seed-plugin
@@ -227,7 +252,6 @@ This is a beta version of the plugin, we've got some plans in mind to improve th
 * Create a command to create a test-user in Cognito through the Plugin
 * As part of the command above, integrate with Secrets Manager to securely store the test-user's credentials, and use Secrets Manager when running the seeding script to fetch the credentials
 * Automatically infer the mutations and data structure from the GraphQL API, to dynamically create some sample mutations based on your schema
-* Create a configuration option to link remote seeding to a specific Amplify environment. For instance, specify that the plugin should only run in 'dev' and not in 'prod'
 
 ## Security
 
