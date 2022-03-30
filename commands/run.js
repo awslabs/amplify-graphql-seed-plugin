@@ -1,4 +1,4 @@
-import { Amplify, API, Auth, graphqlOperation } from 'aws-amplify'
+const { Amplify, API, Auth, graphqlOperation } = require('aws-amplify')
 
 const path = require('path')
 
@@ -8,7 +8,7 @@ const { defaultProvider } = require('@aws-sdk/credential-provider-node')
 const gql = require('graphql-tag')
 
 const {
-  getAwsExportsFile,
+  getAwsExports,
   getSeedingDirectory,
   getConfigurationData,
   getCredentialsFileData
@@ -34,21 +34,21 @@ async function run (context) {
   validateInputArguments(context.parameters.options, context)
 
   // Step 2: Import all the configuration files
-  const awsExports = await getAwsExportsFile(context)
+  const awsExports = await getAwsExports(context)
   const configurationData = await getConfigurationData(context)
 
   const seedDir = getSeedingDirectory(context)
   const seedDataFile = path.join(seedDir, configurationData.seedDataFile)
-  const seedData = await import(seedDataFile)
+  const seedData = require(seedDataFile)
 
   // Step 3: Get necessary parameters from config files and initialize Amplify package
-  Amplify.configure(awsExports.default)
+  Amplify.configure(awsExports)
 
-  const graphqlEndpoint = awsExports.default.aws_appsync_graphqlEndpoint
+  const graphqlEndpoint = awsExports.aws_appsync_graphqlEndpoint
   validateGraphqlEndpoint(graphqlEndpoint, context)
 
   const defaultAuthenticationType = configurationData.defaultAuthenticationType
-  const region = configurationData.region || awsExports.default.aws_project_region
+  const region = configurationData.region || awsExports.aws_project_region
 
   const remote = context.parameters.options.remote !== undefined
 
@@ -58,9 +58,9 @@ async function run (context) {
   const mutationProps = {
     defaultAuthenticationType,
     endpoint: graphqlEndpoint,
-    apiKey: awsExports.default.aws_appsync_apiKey || null,
+    apiKey: awsExports.aws_appsync_apiKey || null,
     region,
-    remote: remote
+    remote
   }
 
   // Step 4: Add items to the database
@@ -111,13 +111,13 @@ const checkRemoteRequirements = (context, remote, configurationData) => {
     const environmentVariableValue = process.env[remoteSeedEnvironmentVariable]
     if (environmentVariableValue === undefined) {
       context.print.error(`Remote seeding, but $${remoteSeedEnvironmentVariable} variable not found. Make sure to run the init command, and e.g. run "export USER_BRANCH=dev" if you're running this command locally`)
-      throw "Error"
+      throw new Error()
     } else if (!Array.isArray(remoteSeedingEnvs) || remoteSeedingEnvs.length === 0) {
-      context.print.error("Could not find remote seeding environments in the configuration file")
-      throw "Error"
+      context.print.error('Could not find remote seeding environments in the configuration file')
+      throw new Error()
     } else if (!remoteSeedingEnvs.includes(environmentVariableValue)) {
       context.print.error(`Current environment "${environmentVariableValue}" not in remoteSeedingEnvs - edit the configuration.json file`)
-      throw "Error"
+      throw new Error()
     }
   }
 }

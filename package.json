@@ -26,10 +26,24 @@
     "cli-table": "^0.3.11",
     "fast-glob": "^3.2.11",
     "graphql-tag": "^2.12.6",
-    "inquirer": "^7.3.3"
+    "inquirer": "^7.3.3",
+    "esm": "^3.2.25"
   },
   "devDependencies": {
     "eslint": "^8.9.0"
   },
-  "keywords": ["aws", "amplify", "graphql", "seeding", "seed", "mock", "mock data", "database", "plugin", "automate", "appsync", "cicd"]
+  "keywords": [
+    "aws",
+    "amplify",
+    "graphql",
+    "seeding",
+    "seed",
+    "mock",
+    "mock data",
+    "database",
+    "plugin",
+    "automate",
+    "appsync",
+    "cicd"
+  ]
 }

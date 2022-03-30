@@ -1,4 +1,4 @@
-import fs from 'fs'
+const fs = require('fs')
 
 const fsPromises = fs.promises
 const utils = require('../utils/directory-functions')
