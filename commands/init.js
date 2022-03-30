@@ -1,4 +1,4 @@
-import fs from 'fs'
+const fs = require('fs')
 
 const fsPromises = fs.promises
 const fg = require('fast-glob')
@@ -8,7 +8,7 @@ const utils = require('../utils/directory-functions')
 const constants = require('../utils/constants')
 
 const { askCLIConfirmation, askCLIOptions } = require('../utils/cli-input-queries')
-const { getAwsExportsFile } = require('../utils/directory-functions')
+const { getAwsExports } = require('../utils/directory-functions')
 
 const createdFiles = []
 
@@ -115,14 +115,15 @@ async function createCredentialFiles (context) {
 }
 
 async function createConfigurationFile (context) {
-  const awsExports = await getAwsExportsFile(context)
+  const awsExports = await getAwsExports(context)
 
   const jsonObject = {
     mutationsFile: constants.DEFAULT_MUTATION_FILENAME,
     seedDataFile: constants.SEED_FILE_NAME,
-    // TODO remoteSeedingEnvs: ["dev", "athena", "prod"],
-    defaultAuthenticationType: awsExports.default.aws_appsync_authenticationType || '',
-    region: awsExports.default.aws_project_region || ''
+    remoteSeedingEnvs: ["dev"], // eslint-disable-line quotes
+    remoteSeedingEnvironmentVariable: "USER_BRANCH", // eslint-disable-line quotes
+    defaultAuthenticationType: awsExports.aws_appsync_authenticationType || '',
+    region: awsExports.aws_project_region || ''
   }
 
   const json = JSON.stringify(jsonObject, null, '\t')

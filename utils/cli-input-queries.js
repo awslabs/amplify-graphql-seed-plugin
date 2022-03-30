@@ -1,6 +1,6 @@
 const inquirer = require('inquirer')
 
-export async function askCLIConfirmation (message) {
+module.exports.askCLIConfirmation = async (message) => {
   const answer = await inquirer.prompt([
     {
       name: 'providedAnswer',
@@ -12,7 +12,7 @@ export async function askCLIConfirmation (message) {
   return answer.providedAnswer.toString()
 }
 
-export async function askCLIOptions (message, options) {
+module.exports.askCLIOptions = async (message, options) => {
   // E.g. expect options as { name: api.name, value: api.id, checked (opt): [bool] }
   const answer = await inquirer.prompt([
     {
@@ -25,7 +25,7 @@ export async function askCLIOptions (message, options) {
   return answer.providedOption
 }
 
-export const getCredentialsFromCLI = async () => {
+module.exports.getCredentialsFromCLI = async () => {
   const question = [
     {
       name: 'username',

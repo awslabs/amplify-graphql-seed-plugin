@@ -1,3 +1,5 @@
+require = require('esm')(module) // eslint-disable-line no-global-assign
+
 const path = require('path')
 const fs = require('fs')
 const crypto = require('crypto')
@@ -20,70 +22,70 @@ const getFileHash = async (path) => {
   })
 }
 
-export const checkFilesAreTheSame = async (file1, file2) => {
+module.exports.checkFilesAreTheSame = async (file1, file2) => {
   return await getFileHash(file1) === await getFileHash(file2)
 }
 
-export const getProjectRoot = (context) => {
+module.exports.getProjectRoot = (context) => {
   return path.normalize(path.join(context.amplify.pathManager.searchProjectRootPath()))
 }
 
-export const getMockDirectory = (context) => {
-  const backendDir = getBackendDirectory(context)
-  return path.normalize(path.join(backendDir, '../mock-data/dynamodb'))
-}
-
-export const getHooksDirectory = (context) => {
-  const backendDir = getBackendDirectory(context)
-  return path.normalize(path.join(backendDir, '../hooks'))
-}
-
-export const getHooksFileLocation = (context, fileName) => {
-  const getHooksFileLocation = getHooksDirectory(context)
-  return path.normalize(path.join(getHooksFileLocation, fileName))
-}
-
-export const getBackendDirectory = (context) => {
+module.exports.getBackendDirectory = (context) => {
   return context.amplify.pathManager.getBackendDirPath()
 }
 
-export const getSeedingDirectory = (context) => {
-  const backendDir = getBackendDirectory(context)
+module.exports.getMockDirectory = (context) => {
+  const backendDir = module.exports.getBackendDirectory(context)
+  return path.normalize(path.join(backendDir, '../mock-data/dynamodb'))
+}
+
+module.exports.getHooksDirectory = (context) => {
+  const backendDir = module.exports.getBackendDirectory(context)
+  return path.normalize(path.join(backendDir, '../hooks'))
+}
+
+module.exports.getHooksFileLocation = (context, fileName) => {
+  const getHooksFileLocation = module.exports.getHooksDirectory(context)
+  return path.normalize(path.join(getHooksFileLocation, fileName))
+}
+
+module.exports.getSeedingDirectory = (context) => {
+  const backendDir = module.exports.getBackendDirectory(context)
   return path.normalize(path.join(backendDir, SEED_BACKEND_FOLDER))
 }
 
-export const getSampleDirectory = () => {
+module.exports.getSampleDirectory = () => {
   return path.normalize(path.join(__dirname, SAMPLE_DIRECTORY))
 }
 
-export const getSampleFileLocation = (context, fileName) => {
-  const sampleDir = getSampleDirectory(context)
+module.exports.getSampleFileLocation = (context, fileName) => {
+  const sampleDir = module.exports.getSampleDirectory(context)
   return path.normalize(path.join(sampleDir, fileName))
 }
 
-export const getSeedingFileLocation = (context, fileName) => {
-  const seedDir = getSeedingDirectory(context)
+module.exports.getSeedingFileLocation = (context, fileName) => {
+  const seedDir = module.exports.getSeedingDirectory(context)
   return path.normalize(path.join(seedDir, fileName))
 }
 
-export const getSrcFolder = (context) => {
-  const projectRoot = getProjectRoot(context)
+module.exports.getSrcFolder = (context) => {
+  const projectRoot = module.exports.getProjectRoot(context)
   return path.normalize(path.join(projectRoot, 'src'))
 }
 
-export const getAwsExportsFile = async (context) => {
+module.exports.getAwsExports = async (context) => {
   const srcFolder = path.normalize(path.join(context.amplify.pathManager.searchProjectRootPath(), 'src/'))
   const awsExportsFiles = await fg([`${srcFolder}/**/aws-exports.*`])
   if (awsExportsFiles.length === 0) {
     context.print.error('No aws-exports file found.')
-    process.exit()
+    throw new Error('aws-exports.js file does not exist!')
   }
   const awsExportsFile = awsExportsFiles[0]
-  return await import(awsExportsFile)
+  return require(awsExportsFile).default
 }
 
-export const getCredentialsFileData = async (context) => {
-  const seedDir = await getSeedingDirectory(context)
+module.exports.getCredentialsFileData = async (context) => {
+  const seedDir = module.exports.getSeedingDirectory(context)
   try {
     const data = await fsPromises.readFile(`${seedDir}/${constants.CREDENTIALS_FILENAME}`)
     return JSON.parse(data)
@@ -98,8 +100,8 @@ export const getCredentialsFileData = async (context) => {
   }
 }
 
-export const getConfigurationData = async (context) => {
-  const seedDir = await getSeedingDirectory(context)
+module.exports.getConfigurationData = async (context) => {
+  const seedDir = module.exports.getSeedingDirectory(context)
   try {
     const data = await fsPromises.readFile(`${seedDir}/${constants.CONFIGURATIONS_FILENAME}`)
     return JSON.parse(data)

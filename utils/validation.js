@@ -1,4 +1,3 @@
-
 const Ajv = require('ajv')
 
 const {
@@ -8,7 +7,7 @@ const {
 
 const { showHelp } = require('../utils/help')
 
-export const validateGraphqlEndpoint = (graphqlEndpoint, context) => {
+module.exports.validateGraphqlEndpoint = (graphqlEndpoint, context) => {
   if (!graphqlEndpoint) {
     context.print.error('Could not find GraphQL endpoint in aws-exports.js')
     process.exit()
@@ -20,7 +19,7 @@ export const validateGraphqlEndpoint = (graphqlEndpoint, context) => {
   }
 }
 
-export const validateInputArguments = (instance, context) => {
+module.exports.validateInputArguments = (instance, context) => {
   const ajv = new Ajv()
 
   const validate = ajv.compile(RUNARGUMENTSCHEMA)
@@ -33,7 +32,7 @@ export const validateInputArguments = (instance, context) => {
   return valid
 }
 
-export const validateCredentialsSchema = (instance, context) => {
+module.exports.validateCredentialsSchema = (instance, context) => {
   const ajv = new Ajv()
   const schema = {
     type: 'object',
