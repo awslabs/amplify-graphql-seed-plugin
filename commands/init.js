@@ -85,8 +85,10 @@ async function createSeedingFile (context, mutationsFile) {
   let importString = ''
   if (mutationsFile !== null) {
     // There is a mutations file, so add two mutations and the sample one as custom mutation
-    importString = importString.concat(`import * as mutations from "${path.relative(path.dirname(seedFile), mutationsFile)}"\n`)
-    importString = importString.concat(`import * as customMutations from "./${constants.DEFAULT_MUTATION_FILENAME}"`)
+    require = require('esm')(module) // eslint-disable-line no-global-assign
+    importString = importString.concat("require('esm')(module)")
+    importString = importString.concat(`const mutations = require("${path.relative(path.dirname(seedFile), mutationsFile)}")\n`)
+    importString = importString.concat(`const customMutations = require("./${constants.DEFAULT_MUTATION_FILENAME})"`)
   } else {
     // There is no auto-generated mutations file in src/, add the mutations file from seeding directory as main mutations import
     importString = importString.concat(`import * as mutations from "./${constants.DEFAULT_MUTATION_FILENAME}"`)
