@@ -20,7 +20,7 @@ $IMPORTS
   // EXAMPLE 2: Auto-generated mutation, remove '/*' and '\*' to uncomment
   //
   // CREATES 100 TODOs, using the faker library.
-  // Note: install faker by adding it to the package.json of your root-project or using npm install (https://www.npmjs.com/package/faker/v/5.5.3)
+  // Note: Install faker library by running "npm install faker@5.5.3" (https://www.npmjs.com/package/faker/v/5.5.3)
   // Note 2: the latest faker library has been emptied, and is no longer maintained. Use at your own discretion
   //
   // Example items:

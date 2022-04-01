@@ -1,3 +1,5 @@
+require = require('esm')(module) // eslint-disable-line no-global-assign
+
 const { Amplify, API, Auth, graphqlOperation } = require('aws-amplify')
 
 const path = require('path')
