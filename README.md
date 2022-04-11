@@ -3,11 +3,13 @@
 [![npm version](https://badge.fury.io/js/amplify-graphql-seed-plugin.svg)](https://badge.fury.io/js/amplify-graphql-seed-plugin)
 
 
+> 🚨 **Due to a change in the latest Amplify version (8.0.0) you can't install this package directly via NPM anymore.** See this [bug report](https://github.com/aws-amplify/amplify-cli/issues/10180) for more information and the workarounds (i.e. downgrading Amplify or downloading the package to your project from GitHub)
+
 This is an [Amplify Plugin](https://docs.amplify.aws/cli/plugins/plugins/) which helps your to seed the databases of your Amplify projects with data using an AppSync GraphQL API. It can be used to seed local mock databases, as well as remote databases, e.g. for testing purposes. This plugin allows you to customize and auto-generate mock data, including data with relationships between models, beyond the capabilities of the 'Auto-generate data' functionality in Amplify Studio.
 
-With this plugin, you can improve testing of your code 💯, reduce time by creating test data through automation ⏱️, and unify mock-data across your project by codifying it in your Version Control System 🚀. 
+With this plugin, you can improve testing of your code 💯, reduce time by creating test data through automation ⏱️, and unify mock-data across your project by codifying it in your Version Control System 🚀.
 
-**Disclaimer**: this is a beta-release of the Amplify GraphQL Seed Plugin and may contain unforeseen bugs. This is a 3rd-party plugin and is not associated with the official Amplify project. Use this plugin at your own discretion. Please let us know if you encounter any bugs, or have feedback / suggestions. 
+**Disclaimer**: this is a beta-release of the Amplify GraphQL Seed Plugin and may contain unforeseen bugs. This is a 3rd-party plugin and is not associated with the official Amplify project. Use this plugin at your own discretion. Please let us know if you encounter any bugs, or have feedback / suggestions.
 
 ![Demo-gif](./static/demo.gif)
 
@@ -33,25 +35,27 @@ With this plugin, you can improve testing of your code 💯, reduce time by crea
 
 ### Prerequisites
 
-To use this plugin with your Amplify CLI, you must have the following prerequisites setup: 
+To use this plugin with your Amplify CLI, you must have the following prerequisites setup:
 - amplify-cli @ 7.6.5^  - [available here](https://docs.amplify.aws/cli/start/install/)
 - jq - [available here](https://stedolan.github.io/jq/download/)
 - use Node versions @ 16.0.0 or above
 - Amplify project with a GraphQL API - [getting started with Amplify](https://docs.amplify.aws/start/getting-started/installation/q/integration/js/)
 
-Once you have installed the above packages, you can install the GraphQL Seed plugin using the following commands: 
+Once you have installed the above packages, you can install the GraphQL Seed plugin using the following commands:
 ```bash
 npm install -g amplify-graphql-seed-plugin
 amplify plugin add amplify-graphql-seed-plugin
 ```
 
-You can validate the installation by running: 
+> **Note:** If you get an unexpected error here, check out the message at the top of the README as it might be due to your Amplify CLI version
+
+You can validate the installation by running:
 ```amplify graphql-seed version```
 
 The plugin will be available to use with your amplify-cli across all your projects.
 ## Getting started  🔥🔥🔥
 We assume that by this stage you already have a GraphQL API configured in your project. If you don't, you can create one by running `amplify add api` and follow the prompts.
-### Step 1. Run the init command from the root of your Amplify project: 
+### Step 1. Run the init command from the root of your Amplify project:
 ```sh
 amplify graphql-seed init
 ```
@@ -62,27 +66,27 @@ The init file has created the `amplify/backend/seeding/seed-data.js` file. Adjus
 **Option 1:** Start your mock database, and seed it:
 ```sh
 amplify mock --seed
-``` 
+```
 
 **Option 2:** Seed your database remotely after pushing
 
-You can seed your database by running the command below in your terminal. 
+You can seed your database by running the command below in your terminal.
 ```sh
 amplify push --seed
-``` 
+```
 
 
 **Option 3:** Run the plugin directly
 
-You can seed your database by running the command below in your terminal. 
+You can seed your database by running the command below in your terminal.
 ```sh
 amplify graphql-seed run
-``` 
+```
 or for remote databases in the AWS Cloud:
 
 ```sh
 amplify graphql-seed run --remote
-``` 
+```
 
 ## Available commands 🤖
 Below, you can find the available commands to interact with our plugin:
@@ -98,17 +102,17 @@ Below, you can find the available commands to interact with our plugin:
 | ```amplify graphql-seed remove ``` | | Allows you to remove the files created by this plugin. |
 
 ## How does it work? 🤔
-Using the `init` command, the plugin will create a set of files for you which it uses for seeding your database which you can customize. In particular, it creates two new directories in your amplify folder called **backend/seeding** and **hooks** with the following files: 
+Using the `init` command, the plugin will create a set of files for you which it uses for seeding your database which you can customize. In particular, it creates two new directories in your amplify folder called **backend/seeding** and **hooks** with the following files:
 ```
 .
 ├── ...
-├── amplify                  
-│   ├── backend          
-│   │   ├── integration         
+├── amplify
+│   ├── backend
+│   │   ├── integration
     │   ├── api
-    │   ├── auth  
-    │   ├── ... 
-    │   ├── seeding                  
+    │   ├── auth
+    │   ├── ...
+    │   ├── seeding
     │       ├── configurations.json # new
     │       ├── credentials.json    # new
     │       ├── customMutations.js  # new
@@ -120,13 +124,13 @@ Using the `init` command, the plugin will create a set of files for you which it
         ├── post-push.sh # new
         ├── pre-mock.sh  # new
 ```
-The files have the following contents: 
+The files have the following contents:
 - `configurations.json` - holds the configuration of the plugin based on information the plugin found. You can override any values in this file.
-- `seed-data.js` is the file which holds the actual seed data that will be added through GraphQL 
-- \[Optional\] `credentials.json` - stores the credentials you can use to authenticate against your Cognito User Pool. It is important to only use this in your test environment, we don't recommend this for Production environments or security sensitive credentials. 
+- `seed-data.js` is the file which holds the actual seed data that will be added through GraphQL
+- \[Optional\] `credentials.json` - stores the credentials you can use to authenticate against your Cognito User Pool. It is important to only use this in your test environment, we don't recommend this for Production environments or security sensitive credentials.
 - \[Optional\] `customMutations.js` - in this file, you can specify additional custom mutations to use in your seed-data script.
 
-The hooks files are used to run custom code before or after an Amplify command is run. Learn more about Command Hooks [here](https://docs.amplify.aws/cli/project/command-hooks/). Using the hooks files, you can automatically use our plugin when running `amplify mock` and `amplify push` with our custom `--seed` argument. 
+The hooks files are used to run custom code before or after an Amplify command is run. Learn more about Command Hooks [here](https://docs.amplify.aws/cli/project/command-hooks/). Using the hooks files, you can automatically use our plugin when running `amplify mock` and `amplify push` with our custom `--seed` argument.
 
 - pre-mock.sh - custom code to run before running `amplify mock`, in this case, it will delete the local database if you instruct it to.
 - post-mock.sh - custom code to automatically run our plugin to seed the database after running `amplify mock`
@@ -136,7 +140,7 @@ The hooks files are used to run custom code before or after an Amplify command i
 Let's assume the following scenario, you have the following schema.graphql in your Amplify project
 ```graphql
 type Todo @model @auth(rules: [
-    {allow: owner, identityClaim: "email"}, 
+    {allow: owner, identityClaim: "email"},
     {allow: private, provider: userPools, operations: [read, create]},
     {allow: public, provider: apiKey, operations: [read, create]},
     {allow: private, provider: iam}
@@ -148,7 +152,7 @@ type Todo @model @auth(rules: [
 ```
 **Note: the above example allows all different authentication types supported by this plugin. Your case might differ. Take a look at this [section](#authentication-options) **
 
-When you created the file with the `init` command, it automatically added some sample code to `amplify/backend/seeding/seed-data.js`. If you have auto-generated mutations in your project (from Amplify codegen), they will be imported at the top of the file. To create seed data, you'll add entries to the seed-data.js file in the following format (an example is automatically added): 
+When you created the file with the `init` command, it automatically added some sample code to `amplify/backend/seeding/seed-data.js`. If you have auto-generated mutations in your project (from Amplify codegen), they will be imported at the top of the file. To create seed data, you'll add entries to the seed-data.js file in the following format (an example is automatically added):
 ```javascript
 import * as mutations from "../../../src/graphql/mutations.js"
 import * as customMutations from "./customMutations.js"
@@ -166,32 +170,32 @@ By default, the query will use your default authentication method specified in `
 
 ### Authentication options
 
-Our Amplify GraphQL seeding plugin supports 3 different authentication modes. Each of them requires changes to be performed via amplify cli command if not setup already. 
+Our Amplify GraphQL seeding plugin supports 3 different authentication modes. Each of them requires changes to be performed via amplify cli command if not setup already.
 
-1. Cognito User Pools 
+1. Cognito User Pools
   - To use this AuthN method, you need to create a test user in Cognito User Pools first. You can then use the following command to confirm the users credentials to be used later on. Note: you can run the following CLI commands with the appropriate permissions in place to create a user and set a password:
 ```shell
 aws cognito-idp admin-create-user --user-pool-id <your_user_pool_id> --username <your_user_id>
 ```
 ```shell
 aws cognito-idp admin-set-user-password --user-pool-id <your_user_pool_id> --username <your_user_id> --password <your_password> --permanent
-``` 
+```
    - Make sure that Cognito User Pools is enabled as Authorization (AuthZ) option for your GraphQL API. You can do that by running `amplify api update`. Remember to deploy your changes to the amplify by running `amplify push`
    - To be able to write/read to a table, you must enable that authorization option for your schema. Take a look at the documentation to configure the appropriate authorization modes [here](https://docs.amplify.aws/cli/graphql/authorization-rules/). For instance, your schema could have a line like this `type Todo @model @auth(rules: [{allow: owner, identityClaim: "email"}, {allow: private, provider: userPools, operations: [read]}])`
 
-2. AWS IAM 
+2. AWS IAM
    - Make sure that IAM is enabled as AuthZ option for your GraphQL API. You can do that by running `amplify api update`. Remember to deploy your changes to the amplify by running `amplify push`
    - To be able to write/read to a table, you must enable that authorization option for your schema. Take a look the documentation to configure the appropriate authorization modes [here](https://docs.amplify.aws/cli/graphql/authorization-rules/). For instance, your schema could have a line like this `type Todo @model @auth(rules: [{allow: private, provider: iam}])`
    - **!! important !!** If you intent to use IAM authorization to seed a remote database in the AWS Cloud, you need to create a `custom-roles.json` file in your `amplify/api/<your-api>` folder to give permissions to the appropriate IAM role. Otherwise, you well get an unauthorized exception. For more details, see [this page](https://docs.amplify.aws/cli/graphql/authorization-rules/#use-iam-authorization-within-the-appsync-console).
 
-3. API KEY 
+3. API KEY
    - Make sure that API_KEY is enabled as AuthZ option for your GraphQL API. You can do that by running `amplify api update`. Remember to deploy your changes to the amplify by running `amplify push`
    - To be able to write/read to a table, you must enable that authorization option for your schema. Take a look the documentation to configure the appropriate authorization modes [here](https://docs.amplify.aws/cli/graphql/authorization-rules/). For instance, your schema could have a line like this `type Todo @model @auth({allow: public, provider: apiKey, operations: [read, create]})`
 
 ## Common errors ⛔
-* If you see the "GraphQL error: The conditional request failed" error, it is likely that you're trying to create an item with an existing index to your local or remote database. The plugin will skip these elements automatically. 
+* If you see the "GraphQL error: The conditional request failed" error, it is likely that you're trying to create an item with an existing index to your local or remote database. The plugin will skip these elements automatically.
 * If you see an error like "fsPromises.rm is not a function", make sure that your npm version >= 16.0.0
-* As of late February 2022, the plugin might be flagged up with 11 medium-level vulnerabilities. They're coming from the aws-amplify library directly and we are unable to fix them as of now. Take a look at this [issue](https://github.com/aws-amplify/amplify-js/issues/7583) for updates 
+* As of late February 2022, the plugin might be flagged up with 11 medium-level vulnerabilities. They're coming from the aws-amplify library directly and we are unable to fix them as of now. Take a look at this [issue](https://github.com/aws-amplify/amplify-js/issues/7583) for updates
 ## How to use this plugin in CI/CD pipelines 🏗️
 You can also use this plugin to seed your remote databases as part of your deployment pipelines. For example, if you're using the Amplify pipelines, you can adjust your `amplify.yml` file (in build settings), to include the following:
 ```yaml

@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Mechanism to automatically infer the mutations and data structure from the GraphQL API, to dynamically create some sample mutations based on a user's schema
 - Configuration option to link remote seeding to a specific Amplify environment
 
+## [0.1.9] - 2022-04-11
+- Added information to the README regarding installation issues with the new Amplify CLI version (8.0.0). See this [bug report](https://github.com/aws-amplify/amplify-cli/issues/10180) for more info.
+
 ## [0.1.8] - 2022-04-01
 - Added ESM require to the run command so that the plugin, which is CommonJS, can load the ES modules for the seeding. This was causing issues in environments that didn't like mixing CommonJS and ES imports.
 
@@ -42,6 +45,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - local and remote seeding for the following Authentication types: AWS_IAM, API_KEY and Cognito User pools
   - ability to link into amplify hooks to enable commands like `amplify mock --seed`
 
+[0.1.9]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.9
 [0.1.8]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.8
 [0.1.7]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.7
 [0.1.6]: https://github.com/awslabs/amplify-graphql-seed-plugin/releases/tag/v0.1.6
