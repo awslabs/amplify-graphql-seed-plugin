@@ -1,0 +1,277 @@
+# The configurations that used for the recording, feel free to edit them
+config:
+
+  # Specify a command to be executed
+  # like `/bin/bash -l`, `ls`, or any other commands
+  # the default is bash for Linux
+  # or powershell.exe for Windows
+  command: zsh
+
+  # Specify the current working directory path
+  # the default is the current working directory path
+  cwd: /Documents/AmplifyPlugin/graphql-seed-sample
+
+  # Export additional ENV variables
+  env:
+    recording: true
+
+  # Explicitly set the number of columns
+  # or use `auto` to take the current
+  # number of columns of your shell
+  cols: 110
+
+  # Explicitly set the number of rows
+  # or use `auto` to take the current
+  # number of rows of your shell
+  rows: 17
+
+  # Amount of times to repeat GIF
+  # If value is -1, play once
+  # If value is 0, loop indefinitely
+  # If value is a positive number, loop n times
+  repeat: 0
+
+  # Quality
+  # 1 - 100
+  quality: 100
+
+  # Delay between frames in ms
+  # If the value is `auto` use the actual recording delays
+  frameDelay: auto
+
+  # Maximum delay between frames in ms
+  # Ignored if the `frameDelay` isn't set to `auto`
+  # Set to `auto` to prevent limiting the max idle time
+  maxIdleTime: 2000
+
+  # The surrounding frame box
+  # The `type` can be null, window, floating, or solid`
+  # To hide the title use the value null
+  # Don't forget to add a backgroundColor style with a null as type
+  frameBox:
+    type: floating
+    title: Amplify GraphQL Seed demo
+    style:
+      border: 0px black solid
+      # boxShadow: none
+      # margin: 0px
+
+  # Add a watermark image to the rendered gif
+  # You need to specify an absolute path for
+  # the image on your machine or a URL, and you can also
+  # add your own CSS styles
+  watermark:
+    imagePath: null
+    style:
+      position: absolute
+      right: 15px
+      bottom: 15px
+      width: 100px
+      opacity: 0.9
+
+  # Cursor style can be one of
+  # `block`, `underline`, or `bar`
+  cursorStyle: block
+
+  # Font family
+  # You can use any font that is installed on your machine
+  # in CSS-like syntax
+  fontFamily: "Monaco, Lucida Console, Ubuntu Mono, Monospace"
+
+  # The size of the font
+  fontSize: 12
+
+  # The height of lines
+  lineHeight: 1
+
+  # The spacing between letters
+  letterSpacing: 0
+
+  # Theme
+  theme:
+    background: "transparent"
+    foreground: "#afafaf"
+    cursor: "#c7c7c7"
+    black: "#232628"
+    red: "#fc4384"
+    green: "#b3e33b"
+    yellow: "#ffa727"
+    blue: "#75dff2"
+    magenta: "#ae89fe"
+    cyan: "#708387"
+    white: "#d5d5d0"
+    brightBlack: "#626566"
+    brightRed: "#ff7fac"
+    brightGreen: "#c8ed71"
+    brightYellow: "#ebdf86"
+    brightBlue: "#75dff2"
+    brightMagenta: "#ae89fe"
+    brightCyan: "#b1c6ca"
+    brightWhite: "#f9f9f4"
+
+# Records, feel free to edit them
+records:
+  - delay: 1256
+    content: "\e[1m\e[7m%\e[27m\e[1m\e[0m                                                                        \r \r\e]2;lbrinker@147dda3b83b5:~/Documents/AmplifyPlugin/graphql-seed-sample\a\e]1;../graphql-seed-sample\a"
+  - delay: 44
+    content: "\r\e[0m\e[27m\e[24m\e[J\e[01;32m➜  \e[36mgraphql-seed-sample\e[00m \e[01;34mgit:(\e[31mmain\e[34m) \e[33m✗\e[00m \e[K\e[?1h\e=\e[?2004h"
+  - delay: 3853
+    content: a
+  - delay: 40
+    content: "\bam"
+  - delay: 183
+    content: p
+  - delay: 22
+    content: l
+  - delay: 247
+    content: i
+  - delay: 66
+    content: f
+  - delay: 265
+    content: 'y'
+  - delay: 247
+    content: ' '
+  - delay: 110
+    content: g
+  - delay: 204
+    content: r
+  - delay: 71
+    content: a
+  - delay: 39
+    content: p
+  - delay: 186
+    content: h
+  - delay: 86
+    content: q
+  - delay: 74
+    content: l
+  - delay: 221
+    content: '-'
+  - delay: 66
+    content: s
+  - delay: 85
+    content: e
+  - delay: 174
+    content: e
+  - delay: 152
+    content: d
+  - delay: 50
+    content: ' '
+  - delay: 157
+    content: i
+  - delay: 80
+    content: 'n'
+  - delay: 104
+    content: i
+  - delay: 70
+    content: t
+  - delay: 186
+    content: "\e[?1l\e>\e[?2004l\r\r\n\e]2;amplify graphql-seed-sample init\a\e]1;amplify\a"
+  - delay: 5476
+    content: "\e[0mLooking for a \"mutations.*\" file in the src/ folder ... \e[0m\r\n"
+  - delay: 11
+    content: "\e[0mFound a mutations file: /Documents/AmplifyPlugin/src/graphql/mutations.js\e[0m\r\n\e[0mCreating an additional mutations file to complement the auto-generated mutations\e[0m\r\n\e[0mNo environments provided\e[0m\r\n"
+  - delay: 6
+    content: "\e[?25l\e[32m?\e[39m \e[1mDo you want to add hooks for local and/or remote seeding?\e[22m\e[0m \e[0m(Press \e[36m\e[1m<space\r\n>\e[22m\e[39m to select, \e[36m\e[1m<a>\e[22m\e[39m to toggle all, \e[36m\e[1m<i>\e[22m\e[39m to invert selection)\r\n\e[36m❯\e[32m◉\e[39m\e[36m local\e[39m\r\n ◯ remote\e[9D\e[9C"
+  - delay: 754
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mDo you want to add hooks for local and/or remote seeding?\e[22m\e[0m \e[0m(Press \e[36m\e[1m<space\r\n>\e[22m\e[39m to select, \e[36m\e[1m<a>\e[22m\e[39m to toggle all, \e[36m\e[1m<i>\e[22m\e[39m to invert selection)\r\n \e[32m◉\e[39m local\r\n\e[36m❯◯ remote\e[39m\e[9D\e[9C"
+  - delay: 528
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mDo you want to add hooks for local and/or remote seeding?\e[22m\e[0m \e[0m\r\n \e[32m◉\e[39m local\r\n\e[36m❯\e[32m◉\e[39m\e[36m remote\e[39m\e[9D\e[9C"
+  - delay: 628
+    content: "\e[2K\e[1A\e[2K\e[1A\e[2K\e[G\e[32m?\e[39m \e[1mDo you want to add hooks for local and/or remote seeding?\e[22m\e[0m \e[0m\e[36mlocal, remote\r\n\e[39m\r\n\e[0D\r\n\e[?25h"
+  - delay: 11
+    content: "\e[32m\e[39m\r\n\r\n\e[32m✅  Seeding files have been created successfully (see below), you can edit them and run the 'amplify graphql-seed-sample run' command to seed your database. \e[39m\r\n\e[32m\e[39m\r\n\e[0mNew file: /Documents/AmplifyPlugin/graphql-seed/customMutations.js\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/graphql-seed/seed-data.js\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/amplify/hooks/post-mock.sh\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/amplify/hooks/pre-mock.sh\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/amplify/hooks/post-push.sh\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/graphql-seed/credentials.json\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/graphql-seed/.gitignore\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/graphql-seed/configuration.json\e[0m\r\n\e[0mNew file: /Documents/AmplifyPlugin/graphql-seed/README.md\e[0m\r\n\e[32m\e[39m\r\n\e[32mTo get started, we recommend going to the /Documents/AmplifyPlugin/graphql-seed/seed-data.js file \e[39m\r\n\e[32m\e[39m\r\n\e[0m\e[0m\r\n\e[0m\e[0m\r\n"
+  - delay: 23524
+    content: "\e[?25h"
+  - delay: 36
+    content: "\e[1m\e[7m%\e[27m\e[1m\e[0m                                                                        \r \r\e]2;lbrinker@147dda3b83b5:~/Documents/AmplifyPlugin/graphql-seed-sample\a\e]1;../graphql-seed-sample\a"
+  - delay: 42
+    content: "\r\e[0m\e[27m\e[24m\e[J\e[01;32m➜  \e[36mgraphql-seed-sample\e[00m \e[01;34mgit:(\e[31mmain\e[34m) \e[33m✗\e[00m \e[K\e[?1h\e=\e[?2004h"
+  - delay: 1844
+    content: "\e[?1l\e>\e[?2004l\r\r\n\e[1m\e[7m%\e[27m\e[1m\e[0m                                                                        \r \r\e]2;lbrinker@147dda3b83b5:~/Documents/AmplifyPlugin/graphql-seed-sample\a\e]1;../graphql-seed-sample\a"
+  - delay: 54
+    content: "\r\e[0m\e[27m\e[24m\e[J\e[01;32m➜  \e[36mgraphql-seed-sample\e[00m \e[01;34mgit:(\e[31mmain\e[34m) \e[33m✗\e[00m \e[K\e[?1h\e=\e[?2004h"
+  - delay: 395
+    content: "\e[?1l\e>\e[?2004l\r\r\n\e[1m\e[7m%\e[27m\e[1m\e[0m                                                                        \r \r\e]2;lbrinker@147dda3b83b5:~/Documents/AmplifyPlugin/graphql-seed-sample\a\e]1;../graphql-seed-sample\a"
+  - delay: 52
+    content: "\r\e[0m\e[27m\e[24m\e[J\e[01;32m➜  \e[36mgraphql-seed-sample\e[00m \e[01;34mgit:(\e[31mmain\e[34m) \e[33m✗\e[00m \e[K\e[?1h\e=\e[?2004h"
+  - delay: 506
+    content: "\e[?1l\e>\e[?2004l\r\r\n\e[1m\e[7m%\e[27m\e[1m\e[0m                                                                        \r \r\e]2;lbrinker@147dda3b83b5:~/Documents/AmplifyPlugin/graphql-seed-sample\a\e]1;../graphql-seed-sample\a"
+  - delay: 48
+    content: "\r\e[0m\e[27m\e[24m\e[J\e[01;32m➜  \e[36mgraphql-seed-sample\e[00m \e[01;34mgit:(\e[31mmain\e[34m) \e[33m✗\e[00m \e[K\e[?1h\e=\e[?2004h"
+  - delay: 23524
+    content: a
+  - delay: 69
+    content: "\bam"
+  - delay: 639
+    content: p
+  - delay: 64
+    content: l
+  - delay: 213
+    content: i
+  - delay: 49
+    content: f
+  - delay: 226
+    content: 'y'
+  - delay: 141
+    content: ' '
+  - delay: 239
+    content: m
+  - delay: 58
+    content: o
+  - delay: 96
+    content: c
+  - delay: 99
+    content: k
+  - delay: 221
+    content: ' '
+  - delay: 245
+    content: '-'
+  - delay: 158
+    content: '-'
+  - delay: 96
+    content: s
+  - delay: 75
+    content: e
+  - delay: 209
+    content: e
+  - delay: 166
+    content: d
+  - delay: 208
+    content: "\e[?1l\e>\e[?2004l\r\r\n\e]2;amplify mock --seed\a\e]1;amplify\a"
+  - delay: 4993
+    content: "\r\n\e[0m-----  pre-mock execution start -----\e[0m\r\n"
+  - delay: 109
+    content: "INFO: No pre-mock action required\r\n\e[0m-----  pre-mock execution end -----\e[0m\r\n\r\n"
+  - delay: 8596
+    content: "\r\n\e[0m-----  post-mock execution start -----\e[0m\r\n"
+  - delay: 125
+    content: "INFO: Seeding database\r\n"
+  - delay: 2572
+    content: "\e[32mGraphQL schema compiled successfully.\e[39m\r\n\r\n\e[32mEdit your schema at /Documents/AmplifyPlugin/amplify/backend/api/exampleapi/schema.graphql or place .graphql files in a directory at /Documents/AmplifyPlugin/amplify/backend/api/exampleapi/schema\e[39m\r\n"
+  - delay: 24
+    content: "Mock does not handle CloudFormation resource of type AWS::IAM::ManagedPolicy. Skipping processing resource AuthRolePolicy01921FC820.\r\n"
+  - delay: 300
+    content: "Creating new table TodoTable\r\n"
+  - delay: 554
+    content: "\e[0mRunning GraphQL codegen\e[0m\r\n"
+  - delay: 18
+    content: "\e[?25l\e[36m⠋\e[39m Generating GraphQL operations"
+  - delay: 281
+    content: "\e[2K\e[1G\e[?25h\e[32m✔\e[39m Generated GraphQL operations successfully and saved at ../src/graphql\r\n\e[?25h\e[0mAppSync Mock endpoint is running at http://192.168.1.109:20002\e[0m\r\n"
+  - delay: 10505
+    content: "\e[0mSeeding your DB at: http://192.168.1.109:20002/graphql\e[0m\r\n"
+  - delay: 20
+    content: "\e[0mUsing credentials from the credentials.json file.\e[0m\r\n\e[0m\e[0m\r\n\e[0mLogging in with username: testuser@test.nl\e[0m\r\n"
+  - delay: 975
+    content: "\e[0mUsing the following Auth methods: AMAZON_COGNITO_USER_POOLS\e[0m\r\n"
+  - delay: 206
+    content: "\e[32mAdded: 2, Skipped: 0, Operation: createTodo\e[39m\r\n\e[0m\e[0m\r\n\e[0m\e[0m\r\n"
+  - delay: 23524
+    content: "\0"
+  - delay: 23524
+    content: "\0"
+  - delay: 23524
+    content: "\0"
+  - delay: 23524
+    content: "\0"

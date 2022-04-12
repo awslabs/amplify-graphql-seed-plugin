@@ -159,7 +159,7 @@ type Todo @model @auth(rules: [
 
 When you created the file with the `init` command, it automatically added some sample code to `graphql-seed/seed-data.js`. If you have auto-generated mutations in your project (from Amplify codegen), they will be imported at the top of the file. To create seed data, you'll add entries to the seed-data.js file in the following format (an example is automatically added):
 ```javascript
-import * as mutations from "../../../src/graphql/mutations.js"
+import * as mutations from "../src/graphql/mutations.js"
 import * as customMutations from "./customMutations.js"
 
 export const createTodo = {
