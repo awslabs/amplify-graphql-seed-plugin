@@ -60,7 +60,7 @@ We assume that by this stage you already have a GraphQL API configured in your p
 amplify graphql-seed init
 ```
 ### Step 2. Adjust the generated `seed-data.js` file to your needs
-The init file has created the `amplify/backend/seeding/seed-data.js` file. Adjust mutations and data to run your custom seeding. See [this section](#customizing-your-seed-file) of the readme for more details.
+The init file has created the `graphql-seed/seed-data.js` file. Adjust mutations and data to run your custom seeding. See [this section](#customizing-your-seed-file) of the readme for more details.
 
 ### Step 3. Run the plugin to seed your database
 **Option 1:** Start your mock database, and seed it:
@@ -102,27 +102,32 @@ Below, you can find the available commands to interact with our plugin:
 | ```amplify graphql-seed remove ``` | | Allows you to remove the files created by this plugin. |
 
 ## How does it work? 🤔
-Using the `init` command, the plugin will create a set of files for you which it uses for seeding your database which you can customize. In particular, it creates two new directories in your amplify folder called **backend/seeding** and **hooks** with the following files:
+Using the `init` command, the plugin will create a set of files for you which it uses for seeding your database which you can customize. In particular, it creates two new directories called **graphql-seed/** and **amplify/hooks** with the following files:
 ```
 .
 ├── ...
 ├── amplify
 │   ├── backend
 │   │   ├── integration
-    │   ├── api
-    │   ├── auth
-    │   ├── ...
-    │   ├── seeding
-    │       ├── configurations.json # new
-    │       ├── credentials.json    # new
-    │       ├── customMutations.js  # new
-    │       ├── seed-data.js        # new
-    │       ├── .gitignore          # new
-    │
-    ├── hooks
-        ├── post-mock.sh # new
-        ├── post-push.sh # new
-        ├── pre-mock.sh  # new
+│   │   ├── api
+│   │   ├── auth
+│   │   ├── ...
+│   │
+│   ├── hooks
+│       ├── post-mock.sh # new
+│       ├── post-push.sh # new
+│       ├── pre-mock.sh  # new
+│
+├── graphql-seed
+│   ├── configurations.json # new
+│   ├── credentials.json    # new
+│   ├── customMutations.js  # new
+│   ├── seed-data.js        # new
+│   ├── .gitignore          # new
+│   ├── README.md           # new
+│
+├── src
+    ├── ...
 ```
 The files have the following contents:
 - `configurations.json` - holds the configuration of the plugin based on information the plugin found. You can override any values in this file.
@@ -152,9 +157,9 @@ type Todo @model @auth(rules: [
 ```
 **Note: the above example allows all different authentication types supported by this plugin. Your case might differ. Take a look at this [section](#authentication-options) **
 
-When you created the file with the `init` command, it automatically added some sample code to `amplify/backend/seeding/seed-data.js`. If you have auto-generated mutations in your project (from Amplify codegen), they will be imported at the top of the file. To create seed data, you'll add entries to the seed-data.js file in the following format (an example is automatically added):
+When you created the file with the `init` command, it automatically added some sample code to `graphql-seed/seed-data.js`. If you have auto-generated mutations in your project (from Amplify codegen), they will be imported at the top of the file. To create seed data, you'll add entries to the seed-data.js file in the following format (an example is automatically added):
 ```javascript
-import * as mutations from "../../../src/graphql/mutations.js"
+import * as mutations from "../src/graphql/mutations.js"
 import * as customMutations from "./customMutations.js"
 
 export const createTodo = {
@@ -214,7 +219,7 @@ backend:
 ```
 This will install the plugin using npm, add the plugin to the Amplify environment (note that "printf 'Y'" is required to confirm adding it without user-input), and it will install jq as a pre-requisite package.
 
-During the build, the environment will be pushed, and the seeding script will be run based on the code checked in under `amplify/backend/seeding` in the underlying Version Control System.
+During the build, the environment will be pushed, and the seeding script will be run based on the code checked in under `graphql-seed/` in the underlying Version Control System.
 
 **!! Important !!**
 If you are using the Amplify CI/CD pipelines, or if you're encountering a ``SyntaxError: Cannot use import statement outside a module`` error in your build, please ensure that you're using a Node version larger than 14 in your pipeline (we recommend using Node v16 or higher). In Amplify, you can do this in the console by navigating to your app > App Settings > Build Settings. At the bottom of the page, in Build image settings, click on the Edit button and specify the Node.js version which the pipeline should use by adding a package version override. As of 30th of March 2022, Amplify is actually using Node version v14.19.0 (even if you set it to 'latest'), so you need to explicitly set the version to a higher version.
@@ -224,7 +229,7 @@ If you are using the Amplify CI/CD pipelines, or if you're encountering a ``Synt
 ### Specify remote environments for seeding
 When using this plugin to seed remote environments, either through CI/CD pipelines or by using the `amplify graphql-seed run --remote` command, you can specify which environments should be used for seeding. By doing so, you can prevent accidentally seeding the wrong environment.
 
-For example, if you have your CI/CD pipelines in Amplify, you have access to the `$USER_BRANCH` environment variable which defines what environment the CI/CD pipeline is run for. Suppose you want to allow the pipeline to seed the `dev` and `staging` environments, but not the `prod` environment. You can achieve this by adjusting the `amplify/backend/seeding/configuration.json` file to this:
+For example, if you have your CI/CD pipelines in Amplify, you have access to the `$USER_BRANCH` environment variable which defines what environment the CI/CD pipeline is run for. Suppose you want to allow the pipeline to seed the `dev` and `staging` environments, but not the `prod` environment. You can achieve this by adjusting the `graphql-seed/configuration.json` file to this:
 ```json
 {
 	"mutationsFile": "customMutations.js",

@@ -51,7 +51,7 @@ module.exports.getHooksFileLocation = (context, fileName) => {
 
 module.exports.getSeedingDirectory = (context) => {
   const backendDir = module.exports.getBackendDirectory(context)
-  return path.normalize(path.join(backendDir, SEED_BACKEND_FOLDER))
+  return path.normalize(path.join(backendDir, `../../${SEED_BACKEND_FOLDER}`))
 }
 
 module.exports.getSampleDirectory = () => {
