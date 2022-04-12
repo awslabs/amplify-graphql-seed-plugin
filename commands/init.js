@@ -16,7 +16,7 @@ async function run (context) {
   // Step 1: Find existing mutations file in src/
   const mutationsFile = await findMutationsFile(context)
 
-  // Step 2: Create amplify/backend/seeding directory if it doesn't exist
+  // Step 2: Create graphql-seed/ directory if it doesn't exist
   const seedDir = utils.getSeedingDirectory(context)
   if (!fs.existsSync(seedDir)) {
     fs.mkdirSync(seedDir)
@@ -25,7 +25,7 @@ async function run (context) {
   // Step 3: Create Sample Mutations for custom mutations
   await createMutationFile(context, mutationsFile)
 
-  // Step 4: Create seeding file in amplify/backend/seeding with some example mutations
+  // Step 4: Create seeding file in graphql-seed/ with some example mutations
   await createSeedingFile(context, mutationsFile)
 
   // Step 5: Create Hook files
@@ -37,7 +37,10 @@ async function run (context) {
   // Step 7: Create configuration file
   await createConfigurationFile(context)
 
-  // Step 8: Print results of all files added
+  // Step 8: Add the README.md file
+  await addInitFile(context, constants.SAMPLE_README_FILENAME, constants.README_FILENAME)
+
+  // Step 9: Print results of all files added
   if (createdFiles.length > 0) {
     context.print.success('\n\n✅  Seeding files have been created successfully (see below), you can edit them and run the \'amplify graphql-seed run\' command to seed your database. \n')
     for (const file of createdFiles) {
@@ -169,7 +172,7 @@ async function createHookFiles (context) {
 }
 
 /**
- * This function will take a file from the sample-files from the graphql-seed plugin and copy them to the amplify/backend/seeding directory
+ * This function will take a file from the sample-files from the graphql-seed plugin and copy them to the graphql-seed/ directory
  * @param {*} context - context of the plugin
  * @param {*} srcFileName - file name of the sample file
  * @param {*} destFileName - file name of the destination file

@@ -1,5 +1,5 @@
 const SEED_FILE_NAME = 'seed-data.js'
-const SEED_BACKEND_FOLDER = 'seeding'
+const SEED_BACKEND_FOLDER = 'graphql-seed'
 
 const SAMPLE_MUTATIONS_FILE_NAME = 'example-mutation-file.js'
 
@@ -17,6 +17,9 @@ const PRE_MOCK_FILENAME = 'pre-mock.sh'
 
 const SAMPLE_POST_PUSH_FILENAME = 'example-post-push-file.sh'
 const POST_PUSH_FILENAME = 'post-push.sh'
+
+const SAMPLE_README_FILENAME = 'example-readme.md'
+const README_FILENAME = 'README.md'
 
 const REMOTE_SEED_ARGUMENT = 'remote'
 const LOCAL_SEED_ARGUMENT = 'local'
@@ -123,5 +126,7 @@ module.exports = {
   EXAMPLE_GITIGNORE_FILENAME,
   GITIGNORE_FILENAME,
   RUNHELP,
-  RUNARGUMENTSCHEMA
+  RUNARGUMENTSCHEMA,
+  SAMPLE_README_FILENAME,
+  README_FILENAME
 }
