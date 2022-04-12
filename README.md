@@ -102,7 +102,7 @@ Below, you can find the available commands to interact with our plugin:
 | ```amplify graphql-seed remove ``` | | Allows you to remove the files created by this plugin. |
 
 ## How does it work? 🤔
-Using the `init` command, the plugin will create a set of files for you which it uses for seeding your database which you can customize. In particular, it creates two new directories in your amplify folder called **graphql-seed** and **hooks** with the following files:
+Using the `init` command, the plugin will create a set of files for you which it uses for seeding your database which you can customize. In particular, it creates two new directories called **graphql-seed/** and **amplify/hooks** with the following files:
 ```
 .
 ├── ...
