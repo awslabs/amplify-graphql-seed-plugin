@@ -49,7 +49,6 @@ it("Check if IAM client created", () => {
     const clients = {}
     // const clients = {AWS_IAM_AUTHENTICATION: jest.fn()}
     const seeder = new Seeder(awsExports, seedData, configurationData, context, false, clients)
-    seeder.executeMutations()
 
     expect(AWSAppSyncClient).toBeCalledTimes(1);
 });
@@ -70,9 +69,10 @@ it("Check if IAM client used to run the mutate method", () => {
         "region": "eu-west-2"
     }
     const clients = {}
-    // const clients = {AWS_IAM_AUTHENTICATION: jest.fn()}
+    // constgit stats clients = {AWS_IAM_AUTHENTICATION: jest.fn()}
     const seeder = new Seeder(awsExports, seedData, configurationData, context, false, clients)
     seeder.executeMutations()
 
-    expect(AWSAppSyncClientMock).toBeCalledTimes(1);
+    // We're expecting two mutations coming from the seed-data.js file.
+    expect(AWSAppSyncClientMock).toBeCalledTimes(2);
 });

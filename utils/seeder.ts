@@ -4,7 +4,7 @@ import  { Amplify, API, Auth, graphqlOperation } from 'aws-amplify'
 import { default as AWSAppSyncClient } from 'aws-appsync'
 import  { defaultProvider } from '@aws-sdk/credential-provider-node'
 
-import gql from 'graphql-tag'
+import { gql } from 'graphql-tag'
 
 import  {
     getCredentialsFileData
@@ -55,7 +55,6 @@ class Seeder {
     }
 
     async executeMutations () {
-        console.log("clients", this.clients)
         for (const operation of this.seedOperations) {
             // Select the authentication method for a table/schema
             let authenticationToUse = this.mutationProps.defaultAuthenticationType
