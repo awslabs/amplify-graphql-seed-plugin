@@ -21,8 +21,8 @@
   "dependencies": {
     "@aws-sdk/credential-provider-node": "^3.49.0",
     "ajv": "^8.9.0",
-    "aws-amplify": "4.3.14",
-    "aws-appsync": "4.1.2",
+    "aws-amplify": "^4.2.8",
+    "aws-appsync": "^4.1.1",
     "cli-table": "^0.3.11",
     "fast-glob": "^3.2.11",
     "graphql-tag": "^2.12.6",
