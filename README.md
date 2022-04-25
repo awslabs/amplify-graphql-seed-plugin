@@ -9,6 +9,8 @@ This is an [Amplify Plugin](https://docs.amplify.aws/cli/plugins/plugins/) which
 
 With this plugin, you can improve testing of your code 💯, reduce time by creating test data through automation ⏱️, and unify mock-data across your project by codifying it in your Version Control System 🚀.
 
+**Update - 25th of April 2022:** You can now try out our Plugin in our newly released [Automate GraphQL seeding for your Amplify apps workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/b7d84dfb-90e1-493b-9b88-549c898e044b/en-US)
+
 **Disclaimer**: this is a beta-release of the Amplify GraphQL Seed Plugin and may contain unforeseen bugs. This is a 3rd-party plugin and is not associated with the official Amplify project. Use this plugin at your own discretion. Please let us know if you encounter any bugs, or have feedback / suggestions.
 
 ![Demo-gif](./static/demo.gif)
@@ -260,6 +262,8 @@ amplify plugin remove
 
 ## About this project 💡
 This Plugin was created by Michal Juras and Laurens Brinker, Solution Architects at AWS. The project was initially created for one of our projects, and we've decided to publish it so that it can hopefully help out other people as well. It has already saved us quite a lot of time managing our testing environments, and hope it will do the same for you.
+### Try out the plugin in our workshop
+On the 19th of April 2022, we publicly released the [Automate GraphQL seeding for your Amplify apps workshop](https://catalog.us-east-1.prod.workshops.aws/workshops/b7d84dfb-90e1-493b-9b88-549c898e044b/en-US). The workshop contains a sample application and shows you how you can incorporate database seeding into the AWS Amplify project using this amplify-graphql-seed plugin. It also has a bonus module which shows you how to create your own Amplify Plugin.
 
 ## Future work 🌲
 This is a beta version of the plugin, we've got some plans in mind to improve the plugin in the future:
