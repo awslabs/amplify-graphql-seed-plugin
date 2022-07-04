@@ -234,15 +234,15 @@ When using this plugin to seed remote environments, either through CI/CD pipelin
 For example, if you have your CI/CD pipelines in Amplify, you have access to the `$USER_BRANCH` environment variable which defines what environment the CI/CD pipeline is run for. Suppose you want to allow the pipeline to seed the `dev` and `staging` environments, but not the `prod` environment. You can achieve this by adjusting the `graphql-seed/configuration.json` file to this:
 ```json
 {
-	"mutationsFile": "customMutations.js",
-	"seedDataFile": "seed-data.js",
-	"remoteSeedingEnvs": [
-      "dev",
-      "staging",
-	],
-	"remoteSeedingEnvironmentVariable": "USER_BRANCH",
-	"defaultAuthenticationType": "AMAZON_COGNITO_USER_POOLS",
-	"region": "eu-west-2"
+  "mutationsFile": "customMutations.js",
+  "seedDataFile": "seed-data.js",
+  "remoteSeedingEnvs": [
+    "dev",
+    "staging",
+  ],
+  "remoteSeedingEnvironmentVariable": "USER_BRANCH",
+  "defaultAuthenticationType": "AMAZON_COGNITO_USER_POOLS",
+  "region": "eu-west-2"
 }
 ```
 If you've setup your build specification similar to the section above, when the `amplify graphql-seed run` command is executed, the Plugin will verify that the environment for the pipeline is included in `remoteSeedingEnvs`.
