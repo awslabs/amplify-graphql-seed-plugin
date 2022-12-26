@@ -191,9 +191,11 @@ const executeMutationsFromOperation = async (executionProps) => {
 const runGraphqlMutation = async (mutation, input, authenticationToUse, mutationProps, context) => {
   let response = {}
   if (authenticationToUse === COGNITO_AUTHENTICATION) {
-    response = await API.graphql(graphqlOperation(
-      mutation, { input }
-    ))
+    response = await API.graphql({
+        query: gql`${mutation}`,
+        variables: { input },
+        authMode: COGNITO_AUTHENTICATION
+    })
   } else {
     const { clients } = mutationProps
     const client = clients[authenticationToUse]
