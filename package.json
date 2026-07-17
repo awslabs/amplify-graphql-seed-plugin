@@ -21,13 +21,13 @@
   "dependencies": {
     "@aws-sdk/credential-provider-node": "^3.49.0",
     "ajv": "^8.9.0",
-    "aws-amplify": "4.3.14",
-    "aws-appsync": "4.1.2",
+    "aws-amplify": "^6.18.0",
+    "aws-appsync": "^1.2.1",
     "cli-table": "^0.3.11",
+    "esm": "^3.2.25",
     "fast-glob": "^3.2.11",
     "graphql-tag": "^2.12.6",
-    "inquirer": "^7.3.3",
-    "esm": "^3.2.25"
+    "inquirer": "^14.0.2"
   },
   "devDependencies": {
     "eslint": "^8.9.0"
